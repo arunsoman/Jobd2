@@ -45,7 +45,7 @@ public abstract class ObdCommand {
     protected Long responseDelayInMs = null;
     private long start;
     private long end;
-
+    public static final byte[] SLASH_R = "\r".getBytes();
     /**
      * Default ctor to use
      *
@@ -105,7 +105,8 @@ public abstract class ObdCommand {
             InterruptedException {
         // write to OutputStream (i.e.: a BluetoothSocket) with an added
         // Carriage return
-        out.write((cmd + "\r").getBytes());
+        out.write((cmd).getBytes());
+        out.write(SLASH_R);
         out.flush();
         if (responseDelayInMs != null && responseDelayInMs > 0) {
             Thread.sleep(responseDelayInMs);
@@ -121,7 +122,7 @@ public abstract class ObdCommand {
      */
     protected void resendCommand(OutputStream out) throws IOException,
             InterruptedException {
-        out.write("\r".getBytes());
+        out.write(SLASH_R);
         out.flush();
         if (responseDelayInMs != null && responseDelayInMs > 0) {
             Thread.sleep(responseDelayInMs);

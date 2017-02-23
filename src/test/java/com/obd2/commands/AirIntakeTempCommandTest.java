@@ -42,6 +42,14 @@ public class AirIntakeTempCommandTest {
         command = new AirIntakeTemperatureCommand();
     }
 
+    //@Test
+    public void perf() throws IOException{
+    	for(int i =0;i < 10000;i++){
+    		testValidTemperatureCelsius();
+    		testValidTemperatureFahrenheit();
+    		testValidTemperatureZeroCelsius();
+    	}
+    }
     /**
      * Test for valid InputStream read, 24ºC
      *
