@@ -149,9 +149,11 @@ public abstract class ObdCommand {
      */
     protected abstract void performCalculations();
 
-
-    private static Pattern WHITESPACE_PATTERN = Pattern.compile("\\s");
-    private static Pattern BUSINIT_PATTERN = Pattern.compile("(BUS INIT)|(BUSINIT)|(\\.)");
+    private static final String WHITESPACE ="\\s";
+    private static final String BUSINIT = "(BUS INIT)|(BUSINIT)|(\\.)";
+    private static final Pattern REMOVE =  Pattern.compile(WHITESPACE+"|"+BUSINIT);
+    private static Pattern WHITESPACE_PATTERN = Pattern.compile(WHITESPACE);
+    private static Pattern BUSINIT_PATTERN = Pattern.compile(BUSINIT);
     private static Pattern SEARCHING_PATTERN = Pattern.compile("SEARCHING");
     private static Pattern DIGITS_LETTERS_PATTERN = Pattern.compile("([0-9A-F])+");
 
@@ -167,8 +169,8 @@ public abstract class ObdCommand {
      * <p>fillBuffer.</p>
      */
     protected void fillBuffer() {
-        rawData = removeAll(WHITESPACE_PATTERN, rawData); //removes all [ \t\n\x0B\f\r]
-        rawData = removeAll(BUSINIT_PATTERN, rawData);
+        rawData = removeAll(REMOVE, rawData); //removes all [ \t\n\x0B\f\r]
+        //rawData = removeAll(BUSINIT_PATTERN, rawData);
 
         if (!DIGITS_LETTERS_PATTERN.matcher(rawData).matches()) {
             throw new NonNumericResponseException(rawData);

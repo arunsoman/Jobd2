@@ -10,26 +10,28 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
-
-import com.obd2.enums.ObdProtocols;
+package com.obd2.commands.protocol;
 
 /**
- * Select the protocol to use.
+ * Turns off line-feed.
  *
  */
-public class SelectProtocolCommand extends ObdProtocolCommand {
-
-    private final ObdProtocols protocol;
+public class LineFeedOffCommand extends ObdProtocolCommand {
 
     /**
-     * <p>Constructor for SelectProtocolCommand.</p>
-     *
-     * @param protocol a {@link com.obd2.enums.ObdProtocols} object.
+     * <p>Constructor for LineFeedOffCommand.</p>
      */
-    public SelectProtocolCommand(final ObdProtocols protocol) {
-        super("AT SP " + protocol.getValue());
-        this.protocol = protocol;
+    public LineFeedOffCommand() {
+        super("AT L0");
+    }
+
+    /**
+     * <p>Constructor for LineFeedOffCommand.</p>
+     *
+     * @param other a {@link com.obd2.commands.protocol.LineFeedOffCommand} object.
+     */
+    public LineFeedOffCommand(LineFeedOffCommand other) {
+        super(other);
     }
 
     /** {@inheritDoc} */
@@ -41,7 +43,7 @@ public class SelectProtocolCommand extends ObdProtocolCommand {
     /** {@inheritDoc} */
     @Override
     public String getName() {
-        return "Select Protocol " + protocol.name();
+        return "Line Feed Off";
     }
 
 }

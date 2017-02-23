@@ -10,27 +10,31 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
+package com.obd2.commands.protocol;
 
 /**
- * Turn-off headers.
+ * This will set the value of time in milliseconds (ms) that the OBD interface
+ * will wait for a response from the ECU. If exceeds, the response is "NO DATA".
  *
  */
-public class HeadersOffCommand extends ObdProtocolCommand {
+public class TimeoutCommand extends ObdProtocolCommand {
 
     /**
-     * <p>Constructor for HeadersOffCommand.</p>
+     * <p>Constructor for TimeoutCommand.</p>
+     *
+     * @param timeout value between 0 and 255 that multiplied by 4 results in the
+     *                desired timeout in milliseconds (ms).
      */
-    public HeadersOffCommand() {
-        super("ATH0");
+    public TimeoutCommand(int timeout) {
+        super("AT ST " + Integer.toHexString(0xFF & timeout));
     }
 
     /**
-     * <p>Constructor for HeadersOffCommand.</p>
+     * <p>Constructor for TimeoutCommand.</p>
      *
-     * @param other a {@link com.obd2.commands.protocol.HeadersOffCommand} object.
+     * @param other a {@link com.obd2.commands.protocol.TimeoutCommand} object.
      */
-    public HeadersOffCommand(HeadersOffCommand other) {
+    public TimeoutCommand(TimeoutCommand other) {
         super(other);
     }
 
@@ -43,7 +47,7 @@ public class HeadersOffCommand extends ObdProtocolCommand {
     /** {@inheritDoc} */
     @Override
     public String getName() {
-        return "Headers disabled";
+        return "Timeout";
     }
 
 }

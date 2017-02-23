@@ -1,6 +1,7 @@
 *.class
 target
 bin
+test-output
 
 # Package Files #
 *.jar

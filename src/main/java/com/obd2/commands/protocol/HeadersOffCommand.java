@@ -10,35 +10,40 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
-
-import com.obd2.enums.AvailableCommandNames;
+package com.obd2.commands.protocol;
 
 /**
- * Retrieve available PIDs ranging from 21 to 40.
+ * Turn-off headers.
  *
  */
-public class AvailablePidsCommand_21_40 extends AvailablePidsCommand {
+public class HeadersOffCommand extends ObdProtocolCommand {
 
     /**
-     * Default ctor.
+     * <p>Constructor for HeadersOffCommand.</p>
      */
-    public AvailablePidsCommand_21_40() {
-        super("01 20");
+    public HeadersOffCommand() {
+        super("ATH0");
     }
 
     /**
-     * Copy ctor.
+     * <p>Constructor for HeadersOffCommand.</p>
      *
-     * @param other a {@link com.obd2.commands.protocol.AvailablePidsCommand} object.
+     * @param other a {@link com.obd2.commands.protocol.HeadersOffCommand} object.
      */
-    public AvailablePidsCommand_21_40(AvailablePidsCommand_21_40 other) {
+    public HeadersOffCommand(HeadersOffCommand other) {
         super(other);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
-        return AvailableCommandNames.PIDS_21_40.getValue();
+    public String getFormattedResult() {
+        return getResult();
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getName() {
+        return "Headers disabled";
+    }
+
 }

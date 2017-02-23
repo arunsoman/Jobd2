@@ -10,7 +10,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
+package com.obd2.commands.protocol;
 
 /**
  * As per https://www.elmelectronics.com/help/obd/tips/#327_Commands:

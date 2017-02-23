@@ -10,34 +10,40 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
-
+package com.obd2.commands.protocol;
 
 /**
- * Turn-off spaces.
+ * Warm-start the OBD connection.
+ *
  */
-public class SpacesOffCommand extends ObdProtocolCommand {
+public class ObdWarmstartCommand extends ObdProtocolCommand {
 
-    public SpacesOffCommand() {
-        super("ATS0");
+    /**
+     * <p>Constructor for ObdWarmstartCommand.</p>
+     */
+    public ObdWarmstartCommand() {
+        super("AT WS");
     }
 
     /**
-     * <p>Constructor for SpacesOffCommand.</p>
+     * <p>Constructor for ObdWarmstartCommand.</p>
      *
-     * @param other a {@link SpacesOffCommand} object.
+     * @param other a {@link com.obd2.commands.protocol.ObdWarmstartCommand} object.
      */
-    public SpacesOffCommand(SpacesOffCommand other) {
+    public ObdWarmstartCommand(ObdWarmstartCommand other) {
         super(other);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getFormattedResult() {
         return getResult();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getName() {
-        return "Spaces Off";
+        return "Warmstart OBD";
     }
+
 }

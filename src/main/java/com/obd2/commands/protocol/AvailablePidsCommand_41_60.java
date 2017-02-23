@@ -10,21 +10,21 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
+package com.obd2.commands.protocol;
 
 import com.obd2.enums.AvailableCommandNames;
 
 /**
- * Retrieve available PIDs ranging from 01 to 20.
+ * Retrieve available PIDs ranging from 41 to 60.
  *
  */
-public class AvailablePidsCommand_01_20 extends AvailablePidsCommand {
+public class AvailablePidsCommand_41_60 extends AvailablePidsCommand {
 
     /**
      * Default ctor.
      */
-    public AvailablePidsCommand_01_20() {
-        super("01 00");
+    public AvailablePidsCommand_41_60() {
+        super("01 40");
     }
 
     /**
@@ -32,13 +32,13 @@ public class AvailablePidsCommand_01_20 extends AvailablePidsCommand {
      *
      * @param other a {@link com.obd2.commands.protocol.AvailablePidsCommand} object.
      */
-    public AvailablePidsCommand_01_20(AvailablePidsCommand_01_20 other) {
+    public AvailablePidsCommand_41_60(AvailablePidsCommand_41_60 other) {
         super(other);
     }
 
     /** {@inheritDoc} */
     @Override
     public String getName() {
-        return AvailableCommandNames.PIDS_01_20.getValue();
+        return AvailableCommandNames.PIDS_41_60.getValue();
     }
 }

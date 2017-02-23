@@ -10,27 +10,27 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
+package com.obd2.commands.protocol;
 
 /**
- * Turns off line-feed.
+ * Reset the OBD connection.
  *
  */
-public class LineFeedOffCommand extends ObdProtocolCommand {
+public class ObdResetCommand extends ObdProtocolCommand {
 
     /**
-     * <p>Constructor for LineFeedOffCommand.</p>
+     * <p>Constructor for ObdResetCommand.</p>
      */
-    public LineFeedOffCommand() {
-        super("AT L0");
+    public ObdResetCommand() {
+        super("AT Z");
     }
 
     /**
-     * <p>Constructor for LineFeedOffCommand.</p>
+     * <p>Constructor for ObdResetCommand.</p>
      *
-     * @param other a {@link com.obd2.commands.protocol.LineFeedOffCommand} object.
+     * @param other a {@link com.obd2.commands.protocol.ObdResetCommand} object.
      */
-    public LineFeedOffCommand(LineFeedOffCommand other) {
+    public ObdResetCommand(ObdResetCommand other) {
         super(other);
     }
 
@@ -43,7 +43,7 @@ public class LineFeedOffCommand extends ObdProtocolCommand {
     /** {@inheritDoc} */
     @Override
     public String getName() {
-        return "Line Feed Off";
+        return "Reset OBD";
     }
 
 }

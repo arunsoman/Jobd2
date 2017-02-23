@@ -10,28 +10,26 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
+package com.obd2.commands.protocol;
+
+import com.obd2.enums.ObdProtocols;
 
 /**
- * Warm-start the OBD connection.
+ * Select the protocol to use.
  *
  */
-public class ObdWarmstartCommand extends ObdProtocolCommand {
+public class SelectProtocolCommand extends ObdProtocolCommand {
+
+    private final ObdProtocols protocol;
 
     /**
-     * <p>Constructor for ObdWarmstartCommand.</p>
-     */
-    public ObdWarmstartCommand() {
-        super("AT WS");
-    }
-
-    /**
-     * <p>Constructor for ObdWarmstartCommand.</p>
+     * <p>Constructor for SelectProtocolCommand.</p>
      *
-     * @param other a {@link com.obd2.commands.protocol.ObdWarmstartCommand} object.
+     * @param protocol a {@link com.obd2.enums.ObdProtocols} object.
      */
-    public ObdWarmstartCommand(ObdWarmstartCommand other) {
-        super(other);
+    public SelectProtocolCommand(final ObdProtocols protocol) {
+        super("AT SP " + protocol.getValue());
+        this.protocol = protocol;
     }
 
     /** {@inheritDoc} */
@@ -43,7 +41,7 @@ public class ObdWarmstartCommand extends ObdProtocolCommand {
     /** {@inheritDoc} */
     @Override
     public String getName() {
-        return "Warmstart OBD";
+        return "Select Protocol " + protocol.name();
     }
 
 }

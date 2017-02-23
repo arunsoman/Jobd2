@@ -10,21 +10,32 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
+package com.obd2.commands.protocol;
 
-import com.obd2.commands.ObdCommand;
+import com.obd2.commands.PersistentCommand;
 
 /**
- * Reset trouble codes.
+ * Retrieve available PIDs ranging from 21 to 40.
  *
  */
-public class ResetTroubleCodesCommand extends ObdCommand {
+public abstract class AvailablePidsCommand extends PersistentCommand {
 
     /**
-     * <p>Constructor for ResetTroubleCodesCommand.</p>
+     * Default ctor.
+     *
+     * @param command a {@link java.lang.String} object.
      */
-    public ResetTroubleCodesCommand() {
-        super("04");
+    public AvailablePidsCommand(String command) {
+        super(command);
+    }
+
+    /**
+     * Copy ctor.
+     *
+     * @param other a {@link com.obd2.commands.protocol.AvailablePidsCommand} object.
+     */
+    public AvailablePidsCommand(AvailablePidsCommand other) {
+        super(other);
     }
 
     /** {@inheritDoc} */
@@ -36,20 +47,13 @@ public class ResetTroubleCodesCommand extends ObdCommand {
     /** {@inheritDoc} */
     @Override
     public String getFormattedResult() {
-        return getResult();
+        return getCalculatedResult();
     }
 
     /** {@inheritDoc} */
     @Override
     public String getCalculatedResult() {
-        return getResult();
+        //First 4 characters are a copy of the command code, don't return those
+        return String.valueOf(rawData).substring(4);
     }
-
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return getResult();
-    }
-
 }

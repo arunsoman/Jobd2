@@ -12,9 +12,8 @@
  */
 package com.obd2.commands;
 
+import com.obd2.commands.protocol.DescribeProtocolNumberCommand;
 import com.obd2.enums.ObdProtocols;
-
-import comobd2.commands.protocol.DescribeProtocolNumberCommand;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;

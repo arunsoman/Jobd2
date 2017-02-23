@@ -10,40 +10,35 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
+package com.obd2.commands.protocol;
+
+import com.obd2.enums.AvailableCommandNames;
 
 /**
- * Reset the OBD connection.
+ * Retrieve available PIDs ranging from 01 to 20.
  *
  */
-public class ObdResetCommand extends ObdProtocolCommand {
+public class AvailablePidsCommand_01_20 extends AvailablePidsCommand {
 
     /**
-     * <p>Constructor for ObdResetCommand.</p>
+     * Default ctor.
      */
-    public ObdResetCommand() {
-        super("AT Z");
+    public AvailablePidsCommand_01_20() {
+        super("01 00");
     }
 
     /**
-     * <p>Constructor for ObdResetCommand.</p>
+     * Copy ctor.
      *
-     * @param other a {@link com.obd2.commands.protocol.ObdResetCommand} object.
+     * @param other a {@link com.obd2.commands.protocol.AvailablePidsCommand} object.
      */
-    public ObdResetCommand(ObdResetCommand other) {
+    public AvailablePidsCommand_01_20(AvailablePidsCommand_01_20 other) {
         super(other);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getFormattedResult() {
-        return getResult();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String getName() {
-        return "Reset OBD";
+        return AvailableCommandNames.PIDS_01_20.getValue();
     }
-
 }

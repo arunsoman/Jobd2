@@ -10,32 +10,34 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
+package com.obd2.commands.protocol;
+
 
 /**
- * This class allows for an unspecified command to be sent.
+ * Turn-off spaces.
  */
-public class ObdRawCommand extends ObdProtocolCommand {
+public class SpacesOffCommand extends ObdProtocolCommand {
 
-    /**
-     * <p>Constructor for ObdRawCommand.</p>
-     *
-     * @param command a {@link java.lang.String} object.
-     */
-    public ObdRawCommand(String command) {
-        super(command);
+    public SpacesOffCommand() {
+        super("ATS0");
     }
 
-    /** {@inheritDoc} */
+    /**
+     * <p>Constructor for SpacesOffCommand.</p>
+     *
+     * @param other a {@link SpacesOffCommand} object.
+     */
+    public SpacesOffCommand(SpacesOffCommand other) {
+        super(other);
+    }
+
     @Override
     public String getFormattedResult() {
         return getResult();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String getName() {
-        return "Custom command " + getCommandPID();
+        return "Spaces Off";
     }
-
 }

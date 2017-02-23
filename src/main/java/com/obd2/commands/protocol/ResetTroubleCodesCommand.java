@@ -10,27 +10,27 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
+package com.obd2.commands.protocol;
 
-import com.obd2.enums.AvailableCommandNames;
+import com.obd2.commands.ObdCommand;
 
 /**
- * Describe the current Protocol.
- * If a protocol is chosen and the automatic option is
- * also selected, AT DP will show the word 'AUTO' before
- * the protocol description. Note that the description
- * shows the actual protocol names, not the numbers
- * used by the protocol setting commands.
+ * Reset trouble codes.
  *
- * @since 1.0-RC12
  */
-public class DescribeProtocolCommand extends ObdProtocolCommand {
+public class ResetTroubleCodesCommand extends ObdCommand {
 
     /**
-     * <p>Constructor for DescribeProtocolCommand.</p>
+     * <p>Constructor for ResetTroubleCodesCommand.</p>
      */
-    public DescribeProtocolCommand() {
-        super("AT DP");
+    public ResetTroubleCodesCommand() {
+        super("04");
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void performCalculations() {
+
     }
 
     /** {@inheritDoc} */
@@ -41,8 +41,15 @@ public class DescribeProtocolCommand extends ObdProtocolCommand {
 
     /** {@inheritDoc} */
     @Override
+    public String getCalculatedResult() {
+        return getResult();
+    }
+
+
+    /** {@inheritDoc} */
+    @Override
     public String getName() {
-        return AvailableCommandNames.DESCRIBE_PROTOCOL.getValue();
+        return getResult();
     }
 
 }

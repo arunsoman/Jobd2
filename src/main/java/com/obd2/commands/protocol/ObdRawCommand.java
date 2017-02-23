@@ -10,50 +10,32 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
-
-import com.obd2.commands.PersistentCommand;
+package com.obd2.commands.protocol;
 
 /**
- * Retrieve available PIDs ranging from 21 to 40.
- *
+ * This class allows for an unspecified command to be sent.
  */
-public abstract class AvailablePidsCommand extends PersistentCommand {
+public class ObdRawCommand extends ObdProtocolCommand {
 
     /**
-     * Default ctor.
+     * <p>Constructor for ObdRawCommand.</p>
      *
      * @param command a {@link java.lang.String} object.
      */
-    public AvailablePidsCommand(String command) {
+    public ObdRawCommand(String command) {
         super(command);
-    }
-
-    /**
-     * Copy ctor.
-     *
-     * @param other a {@link com.obd2.commands.protocol.AvailablePidsCommand} object.
-     */
-    public AvailablePidsCommand(AvailablePidsCommand other) {
-        super(other);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void performCalculations() {
-
     }
 
     /** {@inheritDoc} */
     @Override
     public String getFormattedResult() {
-        return getCalculatedResult();
+        return getResult();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getCalculatedResult() {
-        //First 4 characters are a copy of the command code, don't return those
-        return String.valueOf(rawData).substring(4);
+    public String getName() {
+        return "Custom command " + getCommandPID();
     }
+
 }

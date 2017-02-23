@@ -10,35 +10,39 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package comobd2.commands.protocol;
+package com.obd2.commands.protocol;
 
 import com.obd2.enums.AvailableCommandNames;
 
 /**
- * Retrieve available PIDs ranging from 41 to 60.
+ * Describe the current Protocol.
+ * If a protocol is chosen and the automatic option is
+ * also selected, AT DP will show the word 'AUTO' before
+ * the protocol description. Note that the description
+ * shows the actual protocol names, not the numbers
+ * used by the protocol setting commands.
  *
+ * @since 1.0-RC12
  */
-public class AvailablePidsCommand_41_60 extends AvailablePidsCommand {
+public class DescribeProtocolCommand extends ObdProtocolCommand {
 
     /**
-     * Default ctor.
+     * <p>Constructor for DescribeProtocolCommand.</p>
      */
-    public AvailablePidsCommand_41_60() {
-        super("01 40");
+    public DescribeProtocolCommand() {
+        super("AT DP");
     }
 
-    /**
-     * Copy ctor.
-     *
-     * @param other a {@link com.obd2.commands.protocol.AvailablePidsCommand} object.
-     */
-    public AvailablePidsCommand_41_60(AvailablePidsCommand_41_60 other) {
-        super(other);
+    /** {@inheritDoc} */
+    @Override
+    public String getFormattedResult() {
+        return getResult();
     }
 
     /** {@inheritDoc} */
     @Override
     public String getName() {
-        return AvailableCommandNames.PIDS_41_60.getValue();
+        return AvailableCommandNames.DESCRIBE_PROTOCOL.getValue();
     }
+
 }
