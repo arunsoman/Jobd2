@@ -1,0 +1,30 @@
+
+sudo: required
+services:
+  - mysql
+language: java
+jdk:
+  - oraclejdk8
+script: mvn clean jacoco:prepare-agent install jacoco:report surefire-report:report
+ 
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "YjEyXXmNRKvIsVF/kn91Cc7uBYQ24NgAAnguHZ6H8oWKhw0uwVT8RXdw0qffGN30QIhgDW5MxwyBLFHQK7l5KiRMIG32o21zNMBgynfizteNUA4qE6JJj02tIU0OwT6NCpVeXx/YAoat9NRdPSnYrd7a8LF/g0CeffY7vsU+QdGXNdFPr6FfPJFoVTyT+KWsOzXmrd5jcTa1Ae1pKDNDSFmu1m6gU8uvOZGtAlMqUuAEa/umNb9VEhpYIxHXZ6EZS9l0K6fdEjQOfbPBSQ59lFPj/J6O48p4dkpNvDX+yAlqBFt9VpIasvoH0+WC95zxHIPMeBvFktz6a/3jlAV8Qw/vTjV9jpv/pa9pxI8j56ZtaW6NRn2vfiGWKN4i/G0MCU1r2nzXoLg2tG2YgY/xAGppOFTEE+LUeXp7yM053KSvyBzGGVDYEWn3r3ONeYYo3N00IDWE37w2AHE2Prw/C4ixq/NSeCDn0hMhgDu/OaIWPvoH+eXu9WULWQSpY8RydMbPIHV4Oj93nya1PBHSVihQQI8pEkhiz112FCjuTmoogk4lKS6uTjnHhlviaFpXJLR6ug9wnGJzq5jqvQJTVVP2Ii26YnV8refkS34xtdElApoLULVyXAeJ2mUjic4KZjEPV8WIFzniN+94wHrcrz0i1FcgU23Nf6t7NbEFPgY="
+
+before_install:
+      - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+addons:
+  coverity_scan:
+    project:
+      name: "arunsoman/jobd2"
+      description: "Build submitted via Travis CI"
+    notification_email: aarunsoman@gmail.com
+    build_command_prepend: "mvn clean"
+    build_command:   "mvn -DskipTests=true compile"
+    branch_pattern: coverity_scan
