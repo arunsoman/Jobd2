@@ -5,7 +5,7 @@ services:
 language: java
 jdk:
   - oraclejdk8
-script: mvn clean jacoco:prepare-agent install jacoco:report surefire-report:report
+script: mvn clean install
  
 after_success:
   - bash <(curl -s https://codecov.io/bash)
